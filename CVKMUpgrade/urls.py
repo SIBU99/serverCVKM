@@ -25,6 +25,12 @@ urlpatterns = [
     path("api/v1/",include("Account.api.urls")),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path("api/v1/", include("Community.api.urls")),
+    path("api/v1/", include("CropPred.api.urls")),
+    path("api/v1/", include("seedling.api.urls")),
+    path("api/v1", include("Nutrients.api.urls")),
+    path("api/v1", include("Weeds.api.urls")),
+    path("api/v1", include("Sprayer.api.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

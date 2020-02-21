@@ -41,6 +41,12 @@ INSTALLED_APPS = [
     #?User Defined App
     "Account",
     "Help",
+    "Community",
+    "CropPred",
+    "Nutrients",
+    "seedling",
+    "Sprayer",
+    "Weeds"
 
     #!installed app
     "rest_framework",

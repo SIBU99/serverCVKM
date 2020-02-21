@@ -168,6 +168,7 @@ class OthersSerializer(serializers.ModelSerializer):
             msg = {"Error":"Please Provide The User Authentication Information"}
             raise ValidationError(msg)
         password = other_user_auth.pop("password", None)
+        _ = other_user_auth.pop("username", None)
         if not password:
             msg = {"Error":"Please Provide Password"}
             raise ValidationError(msg)
@@ -183,7 +184,8 @@ class OthersSerializer(serializers.ModelSerializer):
         except:
             msg = {"Error":"Please Provide a Valid Information"}
             raise ValidationError(msg)
-            
+        
+        return other
 
 class DocumentSerializer(serializers.ModelSerializer):
     "This the serializer for the model : Document"
@@ -228,6 +230,8 @@ class ExpertApplySerializer(serializers.ModelSerializer):
         )
         for doc in docs:
             Docu = Document.objects.create(**doc, linked=expert_data)
+        
+        return expert_data
 
 class ExpertSerializer(serializers.ModelSerializer):
     "This the serializer for the model : Expert"
@@ -288,3 +292,4 @@ class ExpertSerializer(serializers.ModelSerializer):
             }
             raise ValidationError(msg)
 
+        return expert

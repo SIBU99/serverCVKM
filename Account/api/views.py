@@ -206,7 +206,12 @@ class CheckAccountPhone(APIView):
                     _ = Others.objects.get(other_phone = phone_number)
                     data_dic["exists"] = True
                 except:
-                    raise ValidationError(data_dic)
+                    r = req.post("http://172.29.9.89:8080/api/v1/gettoken/", data={"phone_number":phone_number})
+                    if r.status_code is 201:
+                        data_dic["otp"] = "send"
+                    else:
+                        data_dic["otp"] = "not send"
+                    return Response(data_dic, status = status.HTTP_202_ACCEPTED)
         return Response(data_dic, status = status.HTTP_202_ACCEPTED) 
 
 class LoginAccount(APIView):

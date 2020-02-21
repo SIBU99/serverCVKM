@@ -479,7 +479,8 @@ class Others(models.Model):
     other_email = models.EmailField(
         verbose_name="Other's Email",
         help_text="Other's Digital Point Of Contact",
-        unique=True,
+        blank=True,
+        null=True,
         max_length=254
     )
     other_verified_email = models.BooleanField(
